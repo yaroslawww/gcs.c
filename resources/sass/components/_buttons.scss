@@ -1,0 +1,12 @@
+//noinspection CssInvalidAtRule
+.btn {
+  @apply transition inline-block text-sm px-4 py-2 leading-none rounded text-white border border-solid border-white bg-transparent;
+
+  &:hover {
+    @apply bg-gray-100 text-blue-500 cursor-pointer;
+  }
+
+  &:focus {
+    @apply outline-none shadow-outline;
+  }
+}

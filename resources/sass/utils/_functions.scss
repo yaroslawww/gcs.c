@@ -1,0 +1,17 @@
+@function remy($size) {
+
+  // remove units
+  $size: $size/($size * 0 + 1);
+
+  // set 'rem'
+  @return ($size/16)+rem;
+}
+
+@function px($size) {
+
+  // remove units
+  $size: $size/($size * 0 + 1);
+
+  // set 'px'
+  @return ($size)+px;
+}

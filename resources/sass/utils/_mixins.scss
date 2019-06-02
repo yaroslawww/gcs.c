@@ -1,0 +1,21 @@
+$max-width-breakpoints: (
+        sm: '639px',
+        md: '767px',
+        lg: '1023px',
+        xl: '1279px',
+);
+
+@mixin media-breakpoint-max($name) {
+  @if map_get($max-width-breakpoints, $name) {
+    @media screen and (max-width: map_get($max-width-breakpoints, $name)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin pseudoBlock($display: block) {
+  content: '';
+  display: $display;
+}

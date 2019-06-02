@@ -1,0 +1,16 @@
+@import "utils/functions";
+@import "utils/mixins";
+@import "utils/reset";
+
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  &:focus {
+    @apply outline-none;
+    text-shadow: remy(1) remy(1) rgba(#fff, 0.5);
+  }
+}
+
+@import "components/components";

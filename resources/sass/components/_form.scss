@@ -1,0 +1,41 @@
+//noinspection CssInvalidAtRule
+.form {
+  $_self: &;
+  $modeAuth: '#{$_self}_auth';
+
+  &#{$modeAuth} {
+    width: remy(300);
+  }
+
+  @apply border border-solid border-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+
+  &__group {
+    @apply mb-6 relative;
+  }
+
+  &__label {
+    @apply text-gray-100 text-sm font-bold mb-2;
+  }
+
+  &__input {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+
+
+    #{$modeAuth} & {
+      min-width: remy(200);
+    }
+
+    &:focus {
+      @apply outline-none shadow-outline;
+    }
+
+    &.error {
+      @apply border-red-300 shadow-outline-error;
+    }
+  }
+
+  &__error-text {
+    @apply w-full text-red-300 font-bold text-xs text-right pt-1 absolute;
+    top: 100%;
+  }
+}
