@@ -7,6 +7,8 @@ use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Yaroslawww\NovaCmsPages\Http\Middleware\Authorize;
+use Yaroslawww\NovaCmsPages\Nova\Resources\Page;
+use Yaroslawww\NovaCmsPages\Nova\Resources\TemplateFieldGroup;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,10 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/cms-pages.php' => config_path('cms-pages.php'),
+        ]);
+
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova-cms-pages');
@@ -26,7 +32,10 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            //
+            $this->resources();
+
+            Nova::script('nova-template-field', __DIR__.'/../dist/js/template-field.js');
+            Nova::style('nova-template-field', __DIR__.'/../dist/css/template-field.css');
         });
     }
 
@@ -53,6 +62,16 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/cms-pages.php', 'cms-pages'
+        );
+    }
+
+    protected function resources()
+    {
+        Nova::resources([
+            Page::class,
+            TemplateFieldGroup::class,
+        ]);
     }
 }

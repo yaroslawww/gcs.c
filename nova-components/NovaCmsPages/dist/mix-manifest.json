@@ -1,4 +1,6 @@
 {
     "/js/tool.js": "/js/tool.js",
-    "/css/tool.css": "/css/tool.css"
+    "/css/tool.css": "/css/tool.css",
+    "/css/template-field.css": "/css/template-field.css",
+    "/js/template-field.js": "/js/template-field.js"
 }

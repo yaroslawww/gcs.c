@@ -20,7 +20,6 @@ class CreateNovaCmsPageTemplateFieldsTable extends Migration
             $table->foreign('owner_id')
                 ->references('id')->on('users')
                 ->onDelete('set null');
-            $table->json('conditions');
             $table->json('fields');
             $table->softDeletes();
             $table->timestamps();

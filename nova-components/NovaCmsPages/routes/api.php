@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
-//     //
-// });
+Route::get('/templates', function (Request $request) {
+    return response()->json([
+        'test' => 'test'
+    ]);
+})->name('nova_cms_pages.templates.index');
