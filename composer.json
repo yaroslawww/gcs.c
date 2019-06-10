@@ -7,13 +7,30 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./packages/yaroslawww/laravel-meta-table"
+        },
+        {
+            "type": "path",
+            "url": "./packages/yaroslawww/laravel-nova-cms-pages"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "arcanedev/log-viewer": "^4.7",
         "darkaonline/l5-swagger": "5.8.*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "laravel/nova": "~2.0",
+        "yaroslawww/laravel-meta-table": "*",
+        "yaroslawww/laravel-nova-cms-pages": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
