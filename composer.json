@@ -18,7 +18,7 @@
         },
         {
             "type": "path",
-            "url": "./packages/yaroslawww/laravel-nova-cms-pages"
+            "url": "./nova-components/NovaCmsPages"
         }
     ],
     "require": {
@@ -30,7 +30,7 @@
         "laravel/tinker": "^1.0",
         "laravel/nova": "~2.0",
         "yaroslawww/laravel-meta-table": "*",
-        "yaroslawww/laravel-nova-cms-pages": "*"
+        "yaroslawww/nova-cms-pages": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
