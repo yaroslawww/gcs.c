@@ -499,6 +499,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.field.options = response.data.templates;
                 _this.isLoadingTemplates = false;
                 _this.isLoadingTemplateFields = false;
+
+                setTimeout(function () {
+                    _this.value = 'test.blade.php';
+                }, 5000);
             });
         },
 
@@ -10750,51 +10754,44 @@ var render = function() {
     "div",
     [
       _c(
-        "loading-view",
-        { attrs: { loading: _vm.isLoadingTemplates } },
+        "default-field",
+        { attrs: { field: _vm.field, errors: _vm.errors } },
         [
           _c(
-            "default-field",
-            { attrs: { field: _vm.field, errors: _vm.errors } },
+            "template",
+            { slot: "field" },
             [
               _c(
-                "template",
-                { slot: "field" },
-                [
-                  _c(
-                    "select-control",
-                    {
-                      staticClass: "w-full form-control form-select",
-                      class: _vm.errorClasses,
-                      attrs: {
-                        id: _vm.field.attribute,
-                        dusk: _vm.field.attribute,
-                        options: _vm.field.options,
-                        disabled: _vm.isReadonly
-                      },
-                      on: { change: _vm.actionSelectTemplate },
-                      model: {
-                        value: _vm.value,
-                        callback: function($$v) {
-                          _vm.value = $$v
-                        },
-                        expression: "value"
-                      }
+                "select-control",
+                {
+                  staticClass: "w-full form-control form-select",
+                  class: _vm.errorClasses,
+                  attrs: {
+                    id: _vm.field.attribute,
+                    dusk: _vm.field.attribute,
+                    options: _vm.field.options,
+                    disabled: _vm.isReadonly
+                  },
+                  on: { change: _vm.actionSelectTemplate },
+                  model: {
+                    value: _vm.value,
+                    callback: function($$v) {
+                      _vm.value = $$v
                     },
-                    [
-                      _c("option", { attrs: { value: "", selected: "" } }, [
-                        _vm._v(_vm._s(_vm.__("Default Template")))
-                      ])
-                    ]
-                  )
-                ],
-                1
+                    expression: "value"
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "", selected: "" } }, [
+                    _vm._v(_vm._s(_vm.__("Default Template")))
+                  ])
+                ]
               )
             ],
-            2
+            1
           )
         ],
-        1
+        2
       )
     ],
     1

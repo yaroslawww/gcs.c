@@ -12,10 +12,10 @@ require('laravel-mix-tailwind');
  |
  */
 
-mix.config.webpackConfig.output = {
+/*mix.config.webpackConfig.output = {
     chunkFilename: 'js/[name].bundle.js',
     publicPath: '/',
-};
+};*/
 
 mix.options({
     processCssUrls: false,

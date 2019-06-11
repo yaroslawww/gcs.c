@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Yaroslawww\NovaCmsPages\Http\Middleware\Authorize;
 use Yaroslawww\NovaCmsPages\Nova\Resources\Page;
-use Yaroslawww\NovaCmsPages\Services\Template\TemplateService;
+use Yaroslawww\NovaCmsPages\Services\Template\NovaTemplate;
+use Yaroslawww\NovaCmsPages\Services\Template\TemplateExtracter;
+use Yaroslawww\NovaCmsPages\Services\Template\TemplateLexer;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -33,9 +35,6 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             $this->resources();
-
-            Nova::script('nova-template-field', __DIR__.'/../dist/js/template-field.js');
-            Nova::style('nova-template-field', __DIR__.'/../dist/css/template-field.css');
         });
     }
 
@@ -62,12 +61,20 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('NovaCmsPages\TemplateService', function ($app) {
-            return new TemplateService(
-                resource_path('views' . DIRECTORY_SEPARATOR . config('cms-pages.page.templates_dir')),
-                resource_path(config('cms-pages.page.templates_config_dir'))
+        $this->app->bind('NovaCmsPages\TemplateInfoExtracter', function ($app) {
+            return new TemplateExtracter(
+                new TemplateLexer()
             );
         });
+
+        $this->app->bind('NovaCmsPages\NovaTemplate', function ($app) {
+            return new NovaTemplate(
+                $this->app->make('NovaCmsPages\TemplateInfoExtracter'),
+                resource_path('views' . DIRECTORY_SEPARATOR . config('cms-pages.page.templates_dir'))
+            );
+        });
+
+
 
         $this->mergeConfigFrom(
             __DIR__.'/../config/cms-pages.php', 'cms-pages'
