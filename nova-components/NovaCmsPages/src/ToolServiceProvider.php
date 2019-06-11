@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Yaroslawww\NovaCmsPages\Http\Middleware\Authorize;
 use Yaroslawww\NovaCmsPages\Nova\Resources\Page;
-use Yaroslawww\NovaCmsPages\Nova\Resources\TemplateFieldGroup;
+use Yaroslawww\NovaCmsPages\Services\Template\TemplateService;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -62,6 +62,13 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('NovaCmsPages\TemplateService', function ($app) {
+            return new TemplateService(
+                resource_path('views' . DIRECTORY_SEPARATOR . config('cms-pages.page.templates_dir')),
+                resource_path(config('cms-pages.page.templates_config_dir'))
+            );
+        });
+
         $this->mergeConfigFrom(
             __DIR__.'/../config/cms-pages.php', 'cms-pages'
         );
@@ -71,7 +78,6 @@ class ToolServiceProvider extends ServiceProvider
     {
         Nova::resources([
             Page::class,
-            TemplateFieldGroup::class,
         ]);
     }
 }

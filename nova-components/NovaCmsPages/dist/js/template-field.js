@@ -443,13 +443,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -458,10 +451,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['resourceName', 'resourceId', 'field'],
 
+    data: function data() {
+        return {
+            isLoadingTemplates: true,
+            isLoadingTemplateFields: true
+        };
+    },
     mounted: function mounted() {
-        axios.get(this.field.urlTemplatesList).then(function (response) {
-            console.log(response.data);
-        });
+        this.refreshAllTemplates();
     },
 
 
@@ -487,6 +484,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         handleChange: function handleChange(value) {
             this.value = value;
+        },
+
+
+        /*Requests*/
+        refreshAllTemplates: function refreshAllTemplates() {
+            var _this = this;
+
+            this.isLoadingTemplates = true;
+            this.isLoadingTemplateFields = true;
+
+            axios.get(this.field.urlTemplatesList).then(function (response) {
+                console.log(response.data);
+                _this.field.options = response.data.templates;
+                _this.isLoadingTemplates = false;
+                _this.isLoadingTemplateFields = false;
+            });
+        },
+
+
+        /*Actions*/
+        actionSelectTemplate: function actionSelectTemplate(e) {
+            var configFile = e.target.value;
+            console.log(configFile);
         }
     }
 });
@@ -10727,83 +10747,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "default-field",
-    { attrs: { field: _vm.field, errors: _vm.errors } },
+    "div",
     [
       _c(
-        "template",
-        { slot: "field" },
+        "loading-view",
+        { attrs: { loading: _vm.isLoadingTemplates } },
         [
-          _vm._v("\n        " + _vm._s(_vm.field) + "\n        "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.value,
-                expression: "value"
-              }
-            ],
-            staticClass: "w-full form-control form-input form-input-bordered",
-            class: _vm.errorClasses,
-            attrs: {
-              id: _vm.field.name,
-              type: "text",
-              placeholder: _vm.field.name
-            },
-            domProps: { value: _vm.value },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.value = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
           _c(
-            "select-control",
-            {
-              staticClass: "w-full form-control form-select",
-              class: _vm.errorClasses,
-              attrs: {
-                id: _vm.field.attribute,
-                dusk: _vm.field.attribute,
-                options: _vm.field.options,
-                disabled: _vm.isReadonly
-              },
-              model: {
-                value: _vm.value,
-                callback: function($$v) {
-                  _vm.value = $$v
-                },
-                expression: "value"
-              }
-            },
+            "default-field",
+            { attrs: { field: _vm.field, errors: _vm.errors } },
             [
-              _c("option", { attrs: { value: "", selected: "" } }, [
-                _vm._v(_vm._s(_vm.__("Choose anqwe option")))
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1", selected: "" } }, [
-                _vm._v(_vm._s(_vm.__("Choose an option")))
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2", selected: "" } }, [
-                _vm._v(_vm._s(_vm.__("Chooseq an option")))
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "3", selected: "" } }, [
-                _vm._v(_vm._s(_vm.__("Choose anqwe option")))
-              ])
-            ]
+              _c(
+                "template",
+                { slot: "field" },
+                [
+                  _c(
+                    "select-control",
+                    {
+                      staticClass: "w-full form-control form-select",
+                      class: _vm.errorClasses,
+                      attrs: {
+                        id: _vm.field.attribute,
+                        dusk: _vm.field.attribute,
+                        options: _vm.field.options,
+                        disabled: _vm.isReadonly
+                      },
+                      on: { change: _vm.actionSelectTemplate },
+                      model: {
+                        value: _vm.value,
+                        callback: function($$v) {
+                          _vm.value = $$v
+                        },
+                        expression: "value"
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v(_vm._s(_vm.__("Default Template")))
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            2
           )
         ],
         1
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

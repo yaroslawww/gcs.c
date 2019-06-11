@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/templates', function (Request $request) {
-    return response()->json([
-        'test' => 'test'
-    ]);
-})->name('nova_cms_pages.templates.index');
+Route::group([
+    'namespace' => 'Yaroslawww\NovaCmsPages\Http\Controllers',
+    'as' => 'nova_cms_pages.'
+], function () {
+    Route::get('/templates', 'TemplateController@index')->name('templates.index');
+});
+
