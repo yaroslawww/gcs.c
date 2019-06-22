@@ -3,13 +3,11 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
 class NovaTemplate implements ITemplate
 {
-
     protected $infoExtracter;
     protected $templatesPath;
 
@@ -24,7 +22,6 @@ class NovaTemplate implements ITemplate
      */
     public function __construct(ITemplateInfoExtracter $infoExtracter, string $templatesPath)
     {
-
         $this->infoExtracter = $infoExtracter;
         $this->templatesPath = $templatesPath;
     }

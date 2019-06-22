@@ -3,12 +3,10 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 use Doctrine\Common\Lexer\AbstractLexer;
 
 class TemplateLexer extends AbstractLexer
 {
-
     const T_NAME = 'name';
 
     const REGEX_NAME = 'Template Name:\s*(.*)\s*\n';
@@ -60,7 +58,6 @@ class TemplateLexer extends AbstractLexer
                 return $type;
             }
         }
-
     }
 
     protected function modifyRegexToCatchable($regex)

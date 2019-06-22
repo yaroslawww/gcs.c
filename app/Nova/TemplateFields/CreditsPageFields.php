@@ -3,18 +3,19 @@
 
 namespace App\Nova\TemplateFields;
 
-
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Yaroslawww\NovaCmsPages\Nova\Resources\MetaTableFieldSaver;
 use Yaroslawww\NovaCmsPages\Services\Template\ITemplateFields;
 
-class HomePageFields implements ITemplateFields
+class CreditsPageFields implements ITemplateFields
 {
-
     public function getFields(): array
     {
         return [
-            MetaTableFieldSaver::make(Text::make('Page Content'))
+            MetaTableFieldSaver::make(
+                Trix::make('General Content', 'general_content')
+                    ->rules('required', 'min:10')
+            )
         ];
     }
 }

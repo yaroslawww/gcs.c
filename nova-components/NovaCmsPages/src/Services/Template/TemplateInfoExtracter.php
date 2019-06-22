@@ -3,7 +3,6 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 abstract class TemplateInfoExtracter implements ITemplateInfoExtracter
 {
     protected $lexer;

@@ -3,7 +3,6 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 use Illuminate\Support\Collection;
 
 interface ITemplate
@@ -32,5 +31,4 @@ interface ITemplate
     public function getName(): string;
 
     public function getPath(): string;
-
 }

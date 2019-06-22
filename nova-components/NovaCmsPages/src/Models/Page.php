@@ -2,12 +2,10 @@
 
 namespace Yaroslawww\NovaCmsPages\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-
     protected $table = 'pages';
 
     /**
@@ -52,5 +50,4 @@ class Page extends Model
     {
         return $this->entity_metas()->where('key', $key)->first();
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace Yaroslawww\NovaCmsPages\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class PageMeta extends Model
 {
-
     protected $table = 'page_meta';
 
     /**
@@ -38,5 +36,4 @@ class PageMeta extends Model
         'published_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
-
 }

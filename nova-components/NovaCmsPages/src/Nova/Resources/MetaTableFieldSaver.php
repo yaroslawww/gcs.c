@@ -8,8 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class MetaTableFieldSaver
 {
-
-    static public function make(Field $field)
+    public static function make(Field $field)
     {
         $field->fillUsing(
             function (
@@ -23,9 +22,9 @@ class MetaTableFieldSaver
 
                     $model->{$attribute} = !$value ? null : $value;
                 }
-            });
+            }
+        );
 
         return $field;
     }
-
 }

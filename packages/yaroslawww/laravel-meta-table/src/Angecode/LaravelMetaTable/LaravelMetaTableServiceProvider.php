@@ -2,7 +2,6 @@
 
 namespace Angecode\LaravelMetaTable;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class LaravelMetaTableServiceProvider extends ServiceProvider
@@ -14,7 +13,6 @@ class LaravelMetaTableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**
@@ -24,6 +22,5 @@ class LaravelMetaTableServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 }

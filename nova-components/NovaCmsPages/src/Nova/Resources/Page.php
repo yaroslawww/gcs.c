@@ -5,13 +5,11 @@ namespace Yaroslawww\NovaCmsPages\Nova\Resources;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Yaroslawww\NovaCmsPages\Facades\NovaTemplate;
-use Yaroslawww\NovaCmsPages\Nova\Fields\NovaTemplateField;
 use Yaroslawww\NovaCmsPages\Services\Template\ITemplate;
 use Yaroslawww\NovaCmsPages\Services\Template\TemplateFieldsFactory;
 
@@ -76,6 +74,7 @@ class Page extends Resource
 
             NovaDependencyContainer::make([
                 MetaTableFieldSaver::make(Trix::make('Page Content'))
+                    ->rules('required')
             ])->dependsOn('template', 'default'),
 
         ];

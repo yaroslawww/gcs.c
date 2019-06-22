@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +19,3 @@ Route::group([
 ], function () {
     Route::get('/templates', 'TemplateController@index')->name('templates.index');
 });
-

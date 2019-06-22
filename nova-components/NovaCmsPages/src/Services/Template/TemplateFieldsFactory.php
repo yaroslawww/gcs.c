@@ -3,10 +3,8 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 class TemplateFieldsFactory
 {
-
     protected $class;
 
     /**

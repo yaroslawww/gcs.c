@@ -3,7 +3,6 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 interface ITemplateInfoExtracter
 {
 
@@ -12,5 +11,4 @@ interface ITemplateInfoExtracter
      * @return array
      */
     public function getTemplateInfo($string): array;
-
 }

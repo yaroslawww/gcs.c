@@ -2,10 +2,10 @@
 
 namespace Yaroslawww\NovaCmsPages;
 
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 use Yaroslawww\NovaCmsPages\Http\Middleware\Authorize;
 use Yaroslawww\NovaCmsPages\Nova\Resources\Page;
 use Yaroslawww\NovaCmsPages\Services\Template\NovaTemplate;
@@ -77,7 +77,8 @@ class ToolServiceProvider extends ServiceProvider
 
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/cms-pages.php', 'cms-pages'
+            __DIR__.'/../config/cms-pages.php',
+            'cms-pages'
         );
     }
 

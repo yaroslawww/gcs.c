@@ -3,7 +3,6 @@
 
 namespace Yaroslawww\NovaCmsPages\Services\Template;
 
-
 class TemplateExtracter extends TemplateInfoExtracter
 {
     public function getTemplateInfo($string): array
@@ -19,10 +18,9 @@ class TemplateExtracter extends TemplateInfoExtracter
 
             $this->lexer->moveNext();
 
-            if(!isset($templateInfo[$this->lexer->token['type']])) {
+            if (!isset($templateInfo[$this->lexer->token['type']])) {
                 $templateInfo[$this->lexer->token['type']] = $this->lexer->token['value'];
             }
-
         }
 
         return $templateInfo;
