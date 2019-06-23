@@ -15,13 +15,13 @@ class CreateNovaCmsPageMetaTable extends Migration
     {
         Schema::create('page_meta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('entity_id')->nullable()->index();
+            $table->unsignedBigInteger('entity_id')->index();
             $table->foreign('entity_id')
                 ->references('id')->on('pages')
-                ->onDelete('set null');
-            $table->string('group', 255);
+                ->onDelete('cascade');
+            $table->string('group', 255)->default('default');
             $table->string('key', 255);
-            $table->text('value');
+            $table->text('value')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -22,11 +22,11 @@ class CreateNovaCmsPagesTable extends Migration
             $table->foreign('owner_id')
                 ->references('id')->on('users')
                 ->onDelete('set null');
-            $table->string('status', 25)->default('running')->index();
+            $table->string('status', 25)->default('draft')->index();
             $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->json('meta');
+            $table->json('meta')->nullable();
         });
     }
 

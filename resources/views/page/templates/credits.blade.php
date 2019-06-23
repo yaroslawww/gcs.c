@@ -1,4 +1,10 @@
 {{--
 Template Name: Credits Page
 --}}
-This is credits page
+@extends('master')
+
+@section('content')
+    <div>
+        {!! $page->template_field('general_content') !!}
+    </div>
+@endsection

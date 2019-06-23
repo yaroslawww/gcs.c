@@ -17,16 +17,16 @@ interface ITemplate
     /**
      * Get template instance
      * @param \SplFileInfo $file
-     * @return ITemplate
+     * @return ITemplate|null
      */
-    public function find(\SplFileInfo $file): ITemplate;
+    public function find(\SplFileInfo $file);
 
     /**
      *  Get template instance by file path string
      * @param $filePath
-     * @return ITemplate
+     * @return ITemplate|null
      */
-    public function findFromString($filePath): ITemplate;
+    public function findFromString($filePath);
 
     public function getName(): string;
 

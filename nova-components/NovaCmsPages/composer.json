@@ -21,7 +21,10 @@
         "laravel": {
             "providers": [
                 "Yaroslawww\\NovaCmsPages\\ToolServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "NovaPages": "Yaroslawww\\NovaCmsPages\\Facades\\NovaPages"
+            }
         }
     },
     "config": {

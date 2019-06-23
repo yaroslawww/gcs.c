@@ -6,8 +6,8 @@
         <span class="text-white uppercase font-bold">Home Page</span>
 
     </section>
-
-    @push('footer_scripts')
-        <script src="{{mix('/js/app.js')}}"></script>
-    @endpush
 @endsection
+
+@push('footer_scripts')
+    <script src="{{mix('/js/app.js')}}"></script>
+@endpush

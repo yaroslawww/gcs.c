@@ -9,8 +9,8 @@
   "license": "MIT",
   "repositories": [
     {
-      "type": "composer",
-      "url": "https://nova.laravel.com"
+      "type": "path",
+      "url": "./packages/yaroslawww/nova"
     },
     {
       "type": "path",
@@ -33,7 +33,7 @@
     "fideloper/proxy": "^4.0",
     "friendsofphp/php-cs-fixer": "3.0.x-dev",
     "laravel/framework": "5.8.*",
-    "laravel/nova": "~2.0",
+    "laravel/nova": "*",
     "laravel/tinker": "^1.0",
     "yaroslawww/laravel-meta-table": "*",
     "yaroslawww/nova-cms-pages": "*"

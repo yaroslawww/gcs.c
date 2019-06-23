@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Trix;
 use Yaroslawww\NovaCmsPages\Facades\NovaTemplate;
+use Yaroslawww\NovaCmsPages\Nova\MetaTableFieldSaver;
 use Yaroslawww\NovaCmsPages\Services\Template\ITemplate;
 use Yaroslawww\NovaCmsPages\Services\Template\TemplateFieldsFactory;
 
@@ -74,7 +75,6 @@ class Page extends Resource
 
             NovaDependencyContainer::make([
                 MetaTableFieldSaver::make(Trix::make('Page Content'))
-                    ->rules('required')
             ])->dependsOn('template', 'default'),
 
         ];

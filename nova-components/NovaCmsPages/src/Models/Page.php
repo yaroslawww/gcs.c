@@ -2,10 +2,15 @@
 
 namespace Yaroslawww\NovaCmsPages\Models;
 
+use Angecode\LaravelMetaTable\Contracts\Metable;
+use Angecode\LaravelMetaTable\Traits\HasMeta;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Page extends Model implements Metable
 {
+
+    use HasMeta;
+
     protected $table = 'pages';
 
     /**
@@ -41,13 +46,71 @@ class Page extends Model
         'meta' => 'array',
     ];
 
-    public function entity_metas()
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public static function templateGroupName()
     {
-        return $this->hasMany(PageMeta::class, 'entity_id', 'id');
+        return 'template';
     }
 
-    public function entity_meta($key)
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function template_fields()
     {
-        return $this->entity_metas()->where('key', $key)->first();
+        return $this->entity_metas()
+            ->where('group', static::templateGroupName());
     }
+
+    public function template_field(string $key)
+    {
+        return $this->entity_meta_value($key, static::templateGroupName());
+    }
+
+    public function template_field_value(string $key)
+    {
+        return $this->entity_meta_value($key, static::templateGroupName());
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    public function scopeSlug($query, $slug)
+    {
+        return $query->where('slug', '=', $slug);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESORS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getMetaTableModel()
+    {
+        return PageMeta::class;
+    }
+
+    public function getTemplateViewAttribute()
+    {
+        return config('cms-pages.page.templates_dir') . DIRECTORY_SEPARATOR . str_replace('.blade.php', '', $this->template);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
+
+
 }

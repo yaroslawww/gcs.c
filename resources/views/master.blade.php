@@ -97,7 +97,7 @@
         </nav>
     @show
 
-    <div id="app" class="flex-grow flex justify-center items-center">
+    <div id="app" class="@yield('content_class', 'flex-grow flex justify-center items-center')">
         @section('content')
             <section class="w-full p-6 flex justify-center items-center">
 

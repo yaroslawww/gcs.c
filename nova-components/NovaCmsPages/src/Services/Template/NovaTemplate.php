@@ -26,14 +26,18 @@ class NovaTemplate implements ITemplate
         $this->templatesPath = $templatesPath;
     }
 
-    public function find(\SplFileInfo $file): ITemplate
+    /**
+     * @param \SplFileInfo $file
+     * @return ITemplate|null
+     */
+    public function find(\SplFileInfo $file)
     {
         $template = new self($this->infoExtracter, $this->templatesPath);
         $template = $template->parseTemplateFile($file);
         return $template;
     }
 
-    public function findFromString($filePath): ITemplate
+    public function findFromString($filePath)
     {
         $file = new \SplFileInfo($this->templatesPath . DIRECTORY_SEPARATOR . $filePath);
         return $this->find($file);
@@ -55,7 +59,7 @@ class NovaTemplate implements ITemplate
      * @param $file
      * @return ITemplate|null
      */
-    protected function parseTemplateFile($file): ITemplate
+    protected function parseTemplateFile($file)
     {
         $templateInfo = $this->infoExtracter->getTemplateInfo($this->getFilePartOfContents($file, 0, 1000));
 

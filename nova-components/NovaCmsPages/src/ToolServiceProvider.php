@@ -8,6 +8,7 @@ use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Yaroslawww\NovaCmsPages\Http\Middleware\Authorize;
 use Yaroslawww\NovaCmsPages\Nova\Resources\Page;
+use Yaroslawww\NovaCmsPages\Services\Page\NovaPages;
 use Yaroslawww\NovaCmsPages\Services\Template\NovaTemplate;
 use Yaroslawww\NovaCmsPages\Services\Template\TemplateExtracter;
 use Yaroslawww\NovaCmsPages\Services\Template\TemplateLexer;
@@ -22,7 +23,7 @@ class ToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/cms-pages.php' => config_path('cms-pages.php'),
+            __DIR__ . '/../config/cms-pages.php' => config_path('cms-pages.php'),
         ]);
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
@@ -74,10 +75,13 @@ class ToolServiceProvider extends ServiceProvider
             );
         });
 
+        $this->app->bind('NovaCmsPages\NovaPages', function ($app) {
+            return new NovaPages();
+        });
 
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/cms-pages.php',
+            __DIR__ . '/../config/cms-pages.php',
             'cms-pages'
         );
     }
