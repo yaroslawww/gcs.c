@@ -19,3 +19,4 @@ class CreditsPageFields implements ITemplateFields
         ];
     }
 }
+
