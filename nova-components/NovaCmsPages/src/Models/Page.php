@@ -3,13 +3,13 @@
 namespace Yaroslawww\NovaCmsPages\Models;
 
 use Angecode\LaravelMetaTable\Contracts\Metable;
-use Angecode\LaravelMetaTable\Traits\HasMeta;
+use Angecode\LaravelMetaTable\Traits\HasMetaTable;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model implements Metable
 {
 
-    use HasMeta;
+    use HasMetaTable;
 
     protected $table = 'pages';
 
@@ -57,23 +57,42 @@ class Page extends Model implements Metable
         return 'template';
     }
 
+    public function metaTableModelClass()
+    {
+        return PageMeta::class;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @return mixed
+     * @throws \Angecode\LaravelMetaTable\Exceptions\MetaTableException
+     */
     public function template_fields()
     {
         return $this->entity_metas()
             ->where('group', static::templateGroupName());
     }
 
+    /**
+     * @param string $key
+     * @return string|null
+     * @throws \Angecode\LaravelMetaTable\Exceptions\MetaTableException
+     */
     public function template_field(string $key)
     {
         return $this->entity_meta_value($key, static::templateGroupName());
     }
 
+    /**
+     * @param string $key
+     * @return string|null
+     * @throws \Angecode\LaravelMetaTable\Exceptions\MetaTableException
+     */
     public function template_field_value(string $key)
     {
         return $this->entity_meta_value($key, static::templateGroupName());
@@ -95,11 +114,6 @@ class Page extends Model implements Metable
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
-    public function getMetaTableModel()
-    {
-        return PageMeta::class;
-    }
 
     public function getTemplateViewAttribute()
     {
