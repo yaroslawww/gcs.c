@@ -1,0 +1,189 @@
+/* Colors */
+$color-choice: #fff;
+$color-choice-label: #fff;
+
+/* Sizes */
+$size-choice: 20px;
+$size-disance-to-text: 8px;
+$size-choice-border: 1px;
+
+/* Times */
+$transition-choice: 0.5s;
+
+/* Checkboxes and Radios */
+.light-choice {
+  // lifehack for :focus event
+  opacity: 0;
+  position: fixed;
+  left: 200vw;
+
+  &~label {
+    padding-left: $size-choice + $size-disance-to-text;
+    position: relative;
+    cursor: pointer;
+    color: $color-choice-label;
+    margin: remy(6) 0;
+    display: inline-block;
+
+    &>i {
+      display: block;
+      width: $size-choice;
+      height: $size-choice;
+      border: $size-choice-border solid $color-choice;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+    }
+  }
+
+  &:disabled {
+    &~label {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &:focus {
+    &~label {
+      &>i {
+        outline: 0;
+        box-shadow: rgba(255, 255, 225, 0.8) 0px 0 10px;
+      }
+    }
+  }
+
+  &[type='checkbox'] {
+    $sqrt-of-2: 1.2;
+    $position-of-line: round($size-choice/5);
+    $diagonal: round(($size-choice - 2*$position-of-line) * $sqrt-of-2);
+
+    &~label {
+      &>i {
+        border-radius: $size-choice/4;
+        box-sizing: border-box;
+
+        &:before,
+        &:after {
+          width: 0;
+          height: $size-choice-border;
+          background: $color-choice;
+          transition: width $transition-choice/2;
+          top: $position-of-line;
+        }
+
+        &:before {
+          transform: rotate(45deg);
+          left: $position-of-line;
+          transform-origin: left center;
+          transition-delay: 0s;
+        }
+
+        &:after {
+          transform: rotate(-45deg);
+          right: $position-of-line;
+          transform-origin: right center;
+          transition-delay: $transition-choice/2;
+        }
+      }
+    }
+
+    &:checked {
+      &~label {
+        &>i {
+          border-radius: $size-choice/4;
+
+          &:before,
+          &:after {
+            width: $diagonal;
+          }
+
+          &:before {
+            transition-delay: $transition-choice/2;
+          }
+
+          &:after {
+            transition-delay: 0s;
+          }
+        }
+      }
+    }
+  }
+
+  &[type='radio'] {
+    &~label {
+      &>i {
+        border-radius: 50%;
+
+        &:before {
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: $color-choice;
+          transition: width $transition-choice/2, height  $transition-choice/2;
+        }
+      }
+    }
+
+    &:checked {
+      &~label {
+        &>i {
+          border-radius: 50%;
+
+          &:before {
+
+            width: 15px;
+            height: 15px;
+
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+/* Preflights */
+.wrapper {
+  background-color: #003c57;
+  color: #fff;
+  padding: 30px;
+  font-family: 'Nunito', sans-serif;
+
+  h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  form {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+
+    label {
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+  }
+}

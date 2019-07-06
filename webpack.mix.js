@@ -1,17 +1,27 @@
-const mix = require('laravel-mix');
-require('laravel-mix-tailwind');
+const mix = require('laravel-mix')
+require('laravel-mix-tailwind')
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+// support pug
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.pug$/,
+                oneOf: [
+                    {
+                        resourceQuery: /^\?vue/,
+                        use: ['pug-plain-loader',],
+                    },
+                    {
+                        use: ['raw-loader', 'pug-plain-loader',],
+                    },
+                ],
+            },
+        ],
+    },
+})
 
+// Not supports on webpack4
 /*mix.config.webpackConfig.output = {
     chunkFilename: 'js/[name].bundle.js',
     publicPath: '/',
@@ -24,13 +34,13 @@ mix.options({
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/auth.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .tailwind();
+    .tailwind()
 
-mix.copy('resources/images', 'public/images/default', false);
+mix.copy('resources/images', 'public/images/default', false)
 
 if (!mix.inProduction()) {
     mix.webpackConfig({
-        devtool: 'inline-source-map'
+        devtool: 'inline-source-map',
     })
     mix.browserSync({
         proxy: 'lapibo.home',
@@ -38,6 +48,6 @@ if (!mix.inProduction()) {
             'public/css/*.css',
             'public/js/*.js',
             'resources/views/**/*.php',
-        ]
-    });
+        ],
+    })
 }

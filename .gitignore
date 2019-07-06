@@ -8,6 +8,7 @@
 /vendor
 .env
 .phpunit.result.cache
+.eslintrc_scsslint_tmp8*.js
 Homestead.json
 Homestead.yaml
 npm-debug.log
