@@ -30,3 +30,4 @@ yarn-error.log
 
 
 /.php_cs.cache
+/packages/yaroslawww/laravel-user-fullname-helper/.phpunit.result.cache

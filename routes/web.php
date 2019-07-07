@@ -11,10 +11,19 @@
 |
 */
 
-Route::auth();
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('home');
 });
 
+Route::middleware(['verified', 'auth'])
+    ->prefix('/app')
+    ->group(function () {
+        Route::get('/', function () {
+            dd('This is app');
+        });
+    });
+
+// Should Be last
 NovaPages::routes();

@@ -2,9 +2,8 @@
 
 @section('content')
     <section class="w-full p-6 flex flex-col justify-center items-center">
-
+        @yield('component_data')
         <router-view></router-view>
-
     </section>
 @endsection
 

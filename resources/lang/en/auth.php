@@ -16,5 +16,7 @@ return [
     'authenticated' => 'Success authenticated.',
     'failed' => 'These credentials not valid.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'should_accept_terms' => 'Please accept terms and conditions',
+    'password_not_confirmed' => 'Passwords does not match',
 
 ];
