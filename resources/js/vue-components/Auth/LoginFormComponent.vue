@@ -1,6 +1,10 @@
 <template lang="pug">
   section.container.w-full.p-6.flex.flex-col.justify-center.items-center
-    form.form.form_auth.form_login(@submit.prevent="onFormSubmit")
+    form.form.form_auth.form_login.relative(
+      @submit.prevent="onFormSubmit"
+      :class="{form_loading: isFormLoading}"
+    )
+      .form-loader
       .form__group.mb-6
         label.form__label.flex(for="email") {{ __('Email') }}
         input#email.form__input(

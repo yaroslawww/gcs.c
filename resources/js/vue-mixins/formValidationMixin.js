@@ -7,25 +7,43 @@ export const formValidationMixin = {
             externalValidationErrors: {},
             internalValidationErrors: {},
             request: {},
+            isFormLoading: false,
         }
     },
     computed: {
         validationErrors() {
             return Object.assign(this.externalValidationErrors, this.internalValidationErrors)
         },
+        isSubmitBlocked() {
+            return this.isFormLoading
+        },
     },
     methods: {
         onFormSubmit() {
-            console.log('onFormSubmit')
-            if (this.isFormValid()) {
-                axios(Object.assign(this.request, this.generateAxiosConfig()))
-                    .then(response => {
-                        this.parseResponse(response)
-                    })
-                    .catch(error => {
-                        this.parseError(error)
-                    })
+            if (this.isSubmitBlocked) {
+                return
             }
+            if (this.isFormValid()) {
+                this.beforeFormRequest()
+                setTimeout(() => {
+                    axios(Object.assign(this.request, this.generateAxiosConfig()))
+                        .then(response => {
+                            this.parseResponse(response)
+                        })
+                        .catch(error => {
+                            this.parseError(error)
+                        })
+                        .finally(() => {
+                            this.finallyFormRequest()
+                        })
+                }, 0)
+            }
+        },
+        beforeFormRequest() {
+            this.isFormLoading = true
+        },
+        finallyFormRequest() {
+            this.isFormLoading = false
         },
         validateFields() {
             // Stub method. Will be overridden in components

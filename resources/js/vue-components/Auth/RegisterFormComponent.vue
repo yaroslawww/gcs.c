@@ -1,8 +1,10 @@
 <template lang="pug">
   section.container.w-full.p-6.flex.flex-col.justify-center.items-center
-    form.form.form_auth.form_register(
+    form.form.form_auth.form_register.relative(
       @submit.prevent="onFormSubmit"
+      :class="{form_loading: isFormLoading}"
     )
+      .form-loader
       .flex.flex-wrap
         .form__group.mb-6(class="w-full md:w-1/2 md:mr-2")
           label.form__label.flex(for="first_name") {{ __('First Name') }}

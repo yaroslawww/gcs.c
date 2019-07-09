@@ -1,0 +1,71 @@
+$form-load-point-size: 10;
+$form-load-point-color: #fff;
+$form-load-point-image: radial-gradient(
+        closest-side at 50% 50%,
+        $form-load-point-color,
+        $form-load-point-color,
+        $form-load-point-color,
+        $form-load-point-color,
+        $form-load-point-color,
+        $form-load-point-color,
+        $form-load-point-color,
+        transparent
+);
+$form-load-point-image-positions: null;
+$form-load-point-image-positions: append($form-load-point-image-positions, left center, comma);
+@for $i from 1 through 9 {
+    $form-load-point-image-positions: append($form-load-point-image-positions, remy($i*1.5*$form-load-point-size) center, comma);
+}
+$form-load-point-image-positions: append($form-load-point-image-positions, right center, comma);
+
+.form-loader {
+    &, &:before {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:before {
+        content: "";
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: remy($form-load-point-size) remy($form-load-point-size);
+        width: remy($form-load-point-size*15);
+        height: remy($form-load-point-size*10);
+        animation: form-load 2s ease infinite alternate
+    }
+}
+
+
+@keyframes form-load {
+
+    $i: 0;
+    $counter: 1;
+    @while $i < 100 {
+        $colors: null;
+        @for $y from 1 through 10 {
+            $add-color: none;
+            @if ($i < 50 and $y <= $counter) {
+                $add-color: $form-load-point-image;
+            } @else if($i >= 50 and $y > $counter) {
+                $add-color: $form-load-point-image;
+            }
+            $colors: append($colors, $add-color, comma);
+
+        }
+        #{$i}% {
+            background-image: $colors;
+            background-position: $form-load-point-image-positions;
+        }
+        // increment
+        $i: $i + 5;
+        @if ($counter >= 10) {
+            $counter: 1;
+        } @else {
+            $counter: $counter + 1;
+        }
+
+    }
+}
