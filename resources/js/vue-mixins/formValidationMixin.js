@@ -83,6 +83,14 @@ export const formValidationMixin = {
                 location.href = response.data.data.redirect
                 return
             }
+            if (_.get(response, 'data.data.replacing_the_form')) {
+                switch (response.data.data.replacing_the_form.type) {
+                    case 'simple':
+                        console.warn(response.data.data.replacing_the_form.content)
+                        break
+                }
+                return
+            }
             location.reload()
         },
         handleRequestErrorOther(errorResponse) {

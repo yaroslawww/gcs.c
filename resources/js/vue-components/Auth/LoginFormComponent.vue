@@ -20,7 +20,7 @@
           | {{ __('Password') }}
           router-link(
             class="inline-block align-baseline font-bold text-xs transition text-gray-500 hover:text-gray-300"
-            to="/register"
+            to="/password/reset"
           ) {{ __('Forgot Password?') }}
         input#password.form__input(
           v-model="request.data.password"

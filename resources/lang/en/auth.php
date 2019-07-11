@@ -14,6 +14,8 @@ return [
     */
 
     'authenticated' => 'Success authenticated.',
+    'registered' => 'Success registered.',
+    'email_sent' => 'Email sent.',
     'failed' => 'These credentials not valid.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'should_accept_terms' => 'Please accept terms and conditions',

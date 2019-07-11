@@ -50,8 +50,11 @@ const app = new Vue({
                 path: "/register",
                 name: "register",
                 component: require('./vue-components/Auth/RegisterFormComponent.vue').default,
-                // Dynamic import cn not be used until webpack 5 release https://laravel-mix.com/docs/4.0/upgrade
-                //component: () => import(/* webpackChunkName: "login-form" */ './vue-components/Auth/RegisterFormComponent.vue')
+            },
+            {
+                path: "/password/reset",
+                name: "password.reset",
+                component: require('./vue-components/Auth/EmailResetPasswordFormComponent.vue').default,
             },
         ],
     }),

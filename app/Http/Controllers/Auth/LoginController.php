@@ -54,7 +54,7 @@ class LoginController extends Controller
     {
         if ($request->ajax()) {
             return response()->json([
-               'message' => trans('auth.failed'),
+               'message' => trans('auth.authenticated'),
                 'data' => [
                     'redirect' => $this->redirectPath()
                 ]
