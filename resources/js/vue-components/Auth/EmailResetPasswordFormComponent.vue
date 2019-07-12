@@ -5,18 +5,21 @@
       :class="{form_loading: isFormLoading}"
     )
       .form-loader
-      .form__group.mb-6
-        label.form__label.flex(for="email") {{ __('Email') }}
-        input#email.form__input(
-          v-model="request.data.email"
-          :class="{ error: validationErrors.email }"
-          name="email"
-          type="text"
-          :placeholder="__('my.real.email@ddress.there')"
-        )
-        p.form__error-text(v-if="validationErrors.email") {{ getValidationErrorText('email') }}
-      .flex.items-center.justify-between
-        button.btn.w-full(type="submit") {{ __('Send Reset Link') }}
+      .transition(name="fade")
+        .h2.text-white.text-center.font-bold(v-if="replacingText" v-html="replacingText")
+        div(v-else)
+          .form__group.mb-6
+            label.form__label.flex(for="email") {{ __('Email') }}
+            input#email.form__input(
+              v-model="request.data.email"
+              :class="{ error: validationErrors.email }"
+              name="email"
+              type="text"
+              :placeholder="__('my.real.email@ddress.there')"
+            )
+            p.form__error-text(v-if="validationErrors.email") {{ getValidationErrorText('email') }}
+          .flex.items-center.justify-between
+            button.btn.w-full(type="submit") {{ __('Send Reset Link') }}
 </template>
 
 <script>

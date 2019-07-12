@@ -4,6 +4,7 @@ import _ from 'lodash'
 export const formValidationMixin = {
     data() {
         return {
+            replacingText: '',
             externalValidationErrors: {},
             internalValidationErrors: {},
             request: {},
@@ -86,7 +87,7 @@ export const formValidationMixin = {
             if (_.get(response, 'data.data.replacing_the_form')) {
                 switch (response.data.data.replacing_the_form.type) {
                     case 'simple':
-                        console.warn(response.data.data.replacing_the_form.content)
+                        this.replacingText = response.data.data.replacing_the_form.content
                         break
                 }
                 return
