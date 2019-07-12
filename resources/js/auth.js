@@ -53,8 +53,13 @@ const app = new Vue({
             },
             {
                 path: "/password/reset",
-                name: "password.reset",
+                name: "password.forgot",
                 component: require('./vue-components/Auth/EmailResetPasswordFormComponent.vue').default,
+            },
+            {
+                path: "/password/reset/:token",
+                name: "password.reset",
+                component: require('./vue-components/Auth/ResetPasswordFormComponent.vue').default,
             },
         ],
     }),

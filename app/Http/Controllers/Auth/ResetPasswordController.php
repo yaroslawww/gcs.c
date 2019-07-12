@@ -40,8 +40,58 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.reset')->with(
+        return view('auth.page')->with(
             ['token' => $token, 'email' => $request->email]
         )->with('auth_event', 'reset');
+    }
+
+    /**
+     * Get the response for a successful password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetResponse(Request $request, $response)
+    {
+        if ($request->ajax()) {
+            return response()->json([
+                'message' => trans('passwords.reset'),
+                'data' => [
+                    'replacing_the_form' => [
+                        'type' => 'simple',
+                        'content' => trans($response)
+                    ]
+                ]
+            ]);
+        }
+
+        return redirect($this->redirectPath())
+            ->with('status', trans($response));
+    }
+
+    /**
+     * Get the response for a failed password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        if ($request->ajax()) {
+            return response()->json([
+                'message' => trans('auth.failed'),
+                'errors' => [
+                    'password' => [
+                        trans($response)
+                    ]
+                ]
+            ], 422);
+        }
+
+        return redirect()->back()
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => trans($response)]);
     }
 }

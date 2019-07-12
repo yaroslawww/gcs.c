@@ -56,6 +56,8 @@ class ForgotPasswordController extends Controller
                 ]
             ]);
         }
+
+        return back()->with('status', trans($response));
     }
 
     /**
@@ -77,6 +79,7 @@ class ForgotPasswordController extends Controller
                 ]
             ], 422);
         }
+
         return back()
             ->withInput($request->only('email'))
             ->withErrors(['email' => trans($response)]);
