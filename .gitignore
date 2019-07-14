@@ -27,6 +27,7 @@ yarn-error.log
 /public/images/
 /public/mix-manifest.json
 /public/favicon.ico
+/public/dashboard_assets/
 
 
 /.php_cs.cache
