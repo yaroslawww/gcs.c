@@ -20,7 +20,6 @@ import './plugins/axios'
 import { i18n, } from './plugins/vue-i18n'
 import { router, } from './plugins/vue-router'
 import './plugins/vuex-router-sync'
-import './plugins/bootstrap'
 import './plugins/font-awesome'
 import './plugins/register-service-worker'
 
@@ -40,7 +39,7 @@ import './plugins/register-service-worker'
  * http://stylus-lang.com/
  */
 
-import './assets/stylus/app.styl'
+import './assets/scss/app.scss'
 
 /* ============
  * Main App
