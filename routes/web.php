@@ -21,7 +21,16 @@ Route::middleware(['verified', 'auth'])
     ->prefix('/app')
     ->group(function () {
         Route::get('/', function () {
-            dd('This is app');
+            //dd('This is app');
+            \Laravel\Passport\Passport::personalAccessTokensExpireIn(
+                \Carbon\Carbon::now()
+                    ->addMinute(config('session.lifetime')
+                    )
+            );
+            /** @var \Laravel\Passport\PersonalAccessTokenResult $token */
+            $token = Auth::user()->createToken('auth_generated_token');
+            return view('dashboard.generated')
+                ->with('accessToken', $token->accessToken);
         });
     });
 
